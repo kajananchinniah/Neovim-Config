@@ -87,6 +87,3 @@ set number
 
 " Highlight matching braces
 set showmatch
-
-" Allow for copying onto system clipboard
-set clipboard=unnamed
