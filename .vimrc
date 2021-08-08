@@ -75,7 +75,7 @@ set shiftwidth=2
 set expandtab
 
 " Show line numbers
-" set number
+set number
 
 " Highlight matching braces
 set showmatch
