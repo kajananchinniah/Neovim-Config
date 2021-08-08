@@ -1,5 +1,5 @@
 " Install plugins
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'itchyny/lightline.vim'
@@ -15,20 +15,28 @@ let g:lightline = {
 \ }
 
 "ALE
+
+" Linters
 let g:ale_linters = {
 \ 'python': ['flake8'],
-\ 'cpp': ['cpplint'],
-\ 'cuda': ['cpplint'],
-\ 'c': ['cpplint'],
+\ 'cpp': ['cpplint', 'g++'],
+\ 'cuda': ['cpplint', 'nvcc'],
+\ 'c': ['cpplint', 'gcc'],
 \}
 
+" Fixers
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
 \ 'python': ['black', 'isort'],
-\ 'cpp': ['clang-format', 'uncrustify'],
+\ 'cpp': ['clang-format'],
 \ 'cuda': ['clang-format'],
-\ 'c': ['clang-format', 'uncrustify'],
+\ 'c': ['clang-format'],
 \}
+
+" Use Google style guide
+let g:ale_c_clangformat_style_option='{BasedOnStyle: Google,}'
+let g:ale_cpp_clangformat_style_option='{BasedOnStyle: Google,}'
+let g:ale_cuda_clangformat_style_option='{BasedOnStyle: Google,}'
 
 let g:ale_lint_on_enter=0
 let g:ale_fix_on_save=1
