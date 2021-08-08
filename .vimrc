@@ -37,6 +37,9 @@ let g:ale_fix_on_save=1
 set background=dark
 colorscheme solarized8
 
+" Prevent color scheme from changing background
+autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
+
 " Hotkeys
 map <C-o> :NERDTreeToggle<CR>
 map <C-f> :Files<CR>
@@ -72,7 +75,7 @@ set shiftwidth=2
 set expandtab
 
 " Show line numbers
-set number
+" set number
 
 " Highlight matching braces
 set showmatch
