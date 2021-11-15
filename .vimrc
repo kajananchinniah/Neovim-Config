@@ -19,9 +19,9 @@ let g:lightline = {
 " Linters
 let g:ale_linters = {
 \ 'python': ['flake8'],
-\ 'cpp': ['cpplint', 'g++'],
+\ 'cpp': ['cpplint', 'g++', 'cppcheck'],
 \ 'cuda': ['cpplint', 'nvcc'],
-\ 'c': ['cpplint', 'gcc'],
+\ 'c': ['cpplint', 'gcc', 'cppcheck'],
 \}
 
 " Fixers
@@ -87,3 +87,6 @@ set number
 
 " Highlight matching braces
 set showmatch
+
+" Enabled using mouse (can be convenient)
+set mouse=a
