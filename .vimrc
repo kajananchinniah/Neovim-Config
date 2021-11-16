@@ -16,14 +16,6 @@ let g:lightline = {
 
 "ALE
 
-" Linters
-let g:ale_linters = {
-\ 'python': ['flake8'],
-\ 'cpp': ['cpplint', 'g++', 'cppcheck'],
-\ 'cuda': ['cpplint', 'nvcc'],
-\ 'c': ['cpplint', 'gcc', 'cppcheck'],
-\}
-
 " Fixers
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
