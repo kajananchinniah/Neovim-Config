@@ -16,22 +16,37 @@ let g:lightline = {
 
 "ALE
 
+" Linters
+let g:ale_linters = {
+\ 'python': ['flake8', 'pylint'],
+\ 'cpp': ['cc', 'ccls', 'clangcheck', 'clangd', 'clangtidy', 'clazy', 'cppcheck', 'cquery', 'flawfinder'],
+\ 'cuda': ['clangd', 'nvcc'],
+\ 'c': ['cc', 'ccls', 'clangd', 'clangtidy', 'cppcheck', 'cquery', 'flawfinder'],
+\ 'cmake': ['cmakelint']
+\}
+
 " Fixers
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-\ 'python': ['black', 'isort'],
+\ 'python': ['autoflake', 'autoimport', 'black', 'isort'],
 \ 'cpp': ['clang-format'],
 \ 'cuda': ['clang-format'],
 \ 'c': ['clang-format'],
+\ 'cmake': ['cmakeformat'],
 \}
 
-" Use Google style guide
-let g:ale_c_clangformat_style_option='{BasedOnStyle: Google,}'
-let g:ale_cpp_clangformat_style_option='{BasedOnStyle: Google,}'
+" Style guide
+let g:ale_c_clangformat_style_option='{BasedOnStyle: Google, }'
+let g:ale_cpp_clangformat_style_option='{BasedOnStyle: Google, }'
 let g:ale_cuda_clangformat_style_option='{BasedOnStyle: Google,}'
 
 let g:ale_lint_on_enter=0
 let g:ale_fix_on_save=1
+
+" Quick search for ALE errors
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
 
 "Solarized color scheme
 set background=dark
@@ -58,8 +73,8 @@ set autoindent
 " Smart indentation
 set smartindent
 
-" Wrap line at 120 characters
-set textwidth=120
+" Wrap line at 80 characters
+set textwidth=80
 
 " Syntax highlighting
 set t_Co=256
@@ -80,5 +95,5 @@ set number
 " Highlight matching braces
 set showmatch
 
-" Enabled using mouse (can be convenient)
-set mouse=a
+" Enable using mouse (can be convenient)
+:set mouse=a
