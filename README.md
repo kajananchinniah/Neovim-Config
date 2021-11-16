@@ -1,11 +1,11 @@
 # Vim-Config
 
-This repo serves to backup my vim config file. My config is fairly minimalist right now as I'm starting over from scratch, but I'm hoping to add more features (should I find it necessary). 
+This repo serves to backup my vim config file. My config is fairly minimalist right now as I'm starting over from scratch, but I'm hoping to add more features (should I find it necessary).
 
 ## Installation
 Get Vim Plug (https://github.com/junegunn/vim-plug)
 
-Vim: 
+Vim:
 ```
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -44,7 +44,6 @@ Key features:
 - Lightline to make the status bar at the bottom nicer (https://github.com/itchyny/lightline.vim)
 - NerdTREE for looking for things within a directory / explore directories fast. This is mapped to Ctrl+O (https://github.com/preservim/nerdtree)
 - ALE for linting + formatting of code (customized for C++, CUDA, C & Python) (https://github.com/dense-analysis/ale)
-   - C/C++/CUDA: cpplint & clang-format (Google-style guide); Python: flake8 & black
 - Solarized colorscheme (https://github.com/lifepillar/vim-solarized8)
 - A few other nice settings (e.g. mapping tap to 2 spaces, line numbers, etc)
 
