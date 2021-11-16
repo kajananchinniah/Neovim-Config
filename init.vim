@@ -1,5 +1,5 @@
 " Install plugins
-call plug#begin('~/.vim/plugged')
+call plug#begin()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'itchyny/lightline.vim'
@@ -36,9 +36,20 @@ let g:ale_fixers = {
 \}
 
 " Style guide
-let g:ale_c_clangformat_style_option='{BasedOnStyle: Google, }'
-let g:ale_cpp_clangformat_style_option='{BasedOnStyle: Google, }'
-let g:ale_cuda_clangformat_style_option='{BasedOnStyle: Google,}'
+let g:ale_c_clangformat_style_option= '{
+\  BasedOnStyle: Google,
+\  BreakBeforeBraces: Linux,
+\}'
+
+let g:ale_cpp_clangformat_style_option= '{
+\  BasedOnStyle: Google,
+\  BreakBeforeBraces: Linux,
+\}'
+
+let g:ale_cuda_clangformat_style_option= '{
+\  BasedOnStyle: Google,
+\  BreakBeforeBraces: Linux,
+\}'
 
 let g:ale_lint_on_enter=0
 let g:ale_fix_on_save=1
