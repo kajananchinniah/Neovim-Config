@@ -11,7 +11,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
-Afterwards, simply copy and paste the .vimrc file into your .vimrc file and install inside vim using:
+Afterwards, simply copy and paste the init.vim file into your .vimrc file and install inside vim using:
 ```
 :PlugInstall
 ```
@@ -24,20 +24,12 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
 Afterwards, simply copy and paste the .vimrc file into `~/.config/nvim/init.vim`. You'll also modify one line:
-```
-"Before (this is what it is for vim):
-call plug#begin('~/.vim/plugged')
-
-"After (this is what it could be for nvim config):
-call plug#begin('~/.config/nvim/plugged')
-```
 
 Then just install the plugins inside neovim using:
 ```
 :PlugInstall
 ```
 Afterwards, the plugins will install. Afterwards, quit and neovim should be configured.
-
 
 Key features:
 - fzf to search for files fast. This is mapped to Ctrl+F (https://github.com/junegunn/fzf)
@@ -49,3 +41,4 @@ Key features:
 
 Features I plan on adding:
 - LSP (couldn't get it working in vim)
+- Updating the clang-format to correspond to my personal code style preferences
