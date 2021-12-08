@@ -19,7 +19,7 @@ let g:lightline = {
 " Linters
 let g:ale_linters = {
 \ 'python': ['flake8', 'pylint'],
-\ 'cpp': ['cc', 'ccls', 'clangcheck', 'clangd', 'clangtidy', 'clazy', 'cppcheck', 'cquery', 'flawfinder'],
+\ 'cpp': ['cc', 'ccls', 'clangcheck', 'clangtidy', 'clangd', 'clazy', 'cppcheck', 'cquery', 'flawfinder'],
 \ 'cuda': ['clangd', 'nvcc'],
 \ 'c': ['cc', 'ccls', 'clangd', 'clangtidy', 'cppcheck', 'cquery', 'flawfinder'],
 \ 'cmake': ['cmakelint']
@@ -33,23 +33,59 @@ let g:ale_fixers = {
 \ 'cuda': ['clang-format'],
 \ 'c': ['clang-format'],
 \ 'cmake': ['cmakeformat'],
+\ 'rust': ['rustfmt'],
 \}
 
 " Style guide
 let g:ale_c_clangformat_style_option= '{
-\  BasedOnStyle: Google,
+\  BasedOnStyle: LLVM,
+\  IndentWidth: 4,
 \  BreakBeforeBraces: Linux,
+\  AllowShortIfStatementsOnASingleLine: false,
+\  IndentCaseLabels: false,
 \}'
 
 let g:ale_cpp_clangformat_style_option= '{
-\  BasedOnStyle: Google,
+\  BasedOnStyle: LLVM,
+\  IndentWidth: 4,
 \  BreakBeforeBraces: Linux,
+\  AllowShortIfStatementsOnASingleLine: false,
+\  IndentCaseLabels: false,
 \}'
 
 let g:ale_cuda_clangformat_style_option= '{
-\  BasedOnStyle: Google,
+\  BasedOnStyle: LLVM,
+\  IndentWidth: 4,
 \  BreakBeforeBraces: Linux,
+\  AllowShortIfStatementsOnASingleLine: false,
+\  IndentCaseLabels: false,
 \}'
+
+" C settings
+let g:ale_c_clangformat_use_local_file=1
+let g:ale_c_parse_compile_commands=1
+let g:ale_c_clangd_executable='/usr/bin/clangd-10'
+let g:ale_c_clangtidy_checks=[]
+let g:ale_c_clangtidy_executable='/usr/bin/clang-tidy-10'
+let g:ale_c_cppcheck_executable='/usr/bin/cppcheck'
+
+" C++ settings
+let g:ale_cpp_clangformat_use_local_file=1
+let g:ale_cpp_parse_compile_commands=1
+let g:ale_cpp_clangcheck_executable='/usr/bin/clang-check-10'
+let g:ale_cpp_clangd_executable='/usr/bin/clangd-10'
+let g:ale_cpp_clangtidy_checks=[]
+let g:ale_cpp_clangtidy_executable='/usr/bin/clang-tidy-10'
+let g:ale_cpp_cppcheck_executable='/usr/bin/cppcheck'
+
+" CUDA settings
+let g:ale_cuda_clangformat_use_local_file=1
+let g:ale_cuda_clangd_executable='/usr/bin/clangd-10'
+
+" Other
+let g:ale_set_balloons=1
+let g:ale_linters_explicit=1
+let g:airline#extensions#ale#enabled=1
 
 let g:ale_lint_on_enter=0
 let g:ale_fix_on_save=1
@@ -57,7 +93,6 @@ let g:ale_fix_on_save=1
 " Quick search for ALE errors
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
 
 "Solarized color scheme
 set background=dark
@@ -91,13 +126,13 @@ set textwidth=80
 set t_Co=256
 syntax on
 
-" Tab mapping; 2 spaces
+" Tab mapping; 4 spaces
 filetype plugin indent on
 " show existing tab with 2 spaces width
-set tabstop=2
-" when indenting with '>', use 2 spaces width
-set shiftwidth=2
-" On pressing tab, insert 2 spaces
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
 set expandtab
 
 " Show line numbers
@@ -106,5 +141,5 @@ set number
 " Highlight matching braces
 set showmatch
 
-" Enable using mouse (can be convenient)
-:set mouse=a
+" Allow use of mouse
+set mouse=r
