@@ -68,6 +68,7 @@ let g:ale_c_clangd_executable='/usr/bin/clangd-10'
 let g:ale_c_clangtidy_checks=[]
 let g:ale_c_clangtidy_executable='/usr/bin/clang-tidy-10'
 let g:ale_c_cppcheck_executable='/usr/bin/cppcheck'
+let g:ale_c_clangformat_executable='/usr/bin/clang-format-10'
 
 " C++ settings
 let g:ale_cpp_clangformat_use_local_file=1
@@ -77,10 +78,12 @@ let g:ale_cpp_clangd_executable='/usr/bin/clangd-10'
 let g:ale_cpp_clangtidy_checks=[]
 let g:ale_cpp_clangtidy_executable='/usr/bin/clang-tidy-10'
 let g:ale_cpp_cppcheck_executable='/usr/bin/cppcheck'
+let g:ale_cpp_clangformat_executable='/usr/bin/clang-format-10'
 
 " CUDA settings
 let g:ale_cuda_clangformat_use_local_file=1
 let g:ale_cuda_clangd_executable='/usr/bin/clangd-10'
+let g:ale_cuda_clangformat_executable='/usr/bin/clang-format-10'
 
 " Other
 let g:ale_set_balloons=1
