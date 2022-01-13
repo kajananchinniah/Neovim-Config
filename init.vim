@@ -174,8 +174,8 @@ let g:ale_lint_on_enter=0
 let g:ale_fix_on_save=1
 
 " Quick search for ALE errors
-nmap <silent> <C-o> <Plug>(ale_previous_wrap)
-nmap <silent> <C-p> <Plug>(ale_next_wrap)
+nmap <silent> <C-m> <Plug>(ale_previous_wrap)
+nmap <silent> <C-n> <Plug>(ale_next_wrap)
 
 "Solarized color scheme
 set background=dark
