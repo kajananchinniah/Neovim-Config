@@ -35,18 +35,20 @@ To use the fixers and linters, you should install the relevant linters + fixers
 (see the config file for the relevant ones). Currently, they are hardcoded for
 the 10 version of all the tooling.
 
-Key features:
-- fzf to search for files fast. This is mapped to Ctrl+F (https://github.com/junegunn/fzf)
-- Lightline to make the status bar at the bottom nicer (https://github.com/itchyny/lightline.vim)
-- NerdTREE for looking for things within a directory / explore directories fast. This is mapped to Ctrl+O (https://github.com/preservim/nerdtree)
-- ALE for linting + formatting of code (customized for C++, CUDA, C & Python) (https://github.com/dense-analysis/ale)
+## Key Features
+- fzf to search for files fast
+- Lightline to make the status bar at the bottom nicer
+- NerdTREE for looking for things within a directory / explore directories fast
+- ALE for linting + formatting of code (customized for C++, CUDA, C & Python)
 - A default clang-format config (that will be overwritten by a .clang-format
   file)
-- LSP support via nvim-lspconfig (requires neovim 0,5v+)
+- LSP support via nvim-lspconfig (requires neovim 0.5v+)
 - Treesitter support for better highlighting
 - Vimagit to use git better with neovim
-- Solarized colorscheme (https://github.com/lifepillar/vim-solarized8)
+- Solarized colorscheme
 - A few other nice settings (e.g. mapping tap to 4 spaces, line numbers, etc)
+
+For specifics about the bindings, see `init.vim` for details.
 
 Features I plan on adding:
 - Autocomplete
