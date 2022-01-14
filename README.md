@@ -45,10 +45,8 @@ the 10 version of all the tooling.
 - LSP support via nvim-lspconfig (requires neovim 0.5v+)
 - Treesitter support for better highlighting
 - Vimagit to use git better with neovim
-- Solarized colorscheme
+- Sonokai colourscheme
+- Autocomplete via nvim-cmp
 - A few other nice settings (e.g. mapping tap to 4 spaces, line numbers, etc)
 
 For specifics about the bindings, see `init.vim` for details.
-
-Features I plan on adding:
-- Autocomplete
