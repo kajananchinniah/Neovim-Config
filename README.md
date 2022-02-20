@@ -1,4 +1,4 @@
-# Vim-Config
+# Neovim-Config
 
 This repo serves to backup my neovim config file. I ended up making this public
 again for convenience.
