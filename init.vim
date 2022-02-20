@@ -7,7 +7,10 @@ call plug#begin()
   Plug 'dense-analysis/ale'
   Plug 'EdenEast/nightfox.nvim'
   Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+  Plug 'Yagua/nebulous.nvim'
   Plug 'sainnhe/sonokai'
+  Plug 'lifepillar/vim-solarized8'
+  Plug 'morhetz/gruvbox'
   Plug 'jreybert/vimagit'
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -21,7 +24,7 @@ call plug#end()
 " Enable lightline
 set laststatus=2
 let g:lightline = {
-\ 'colorscheme': 'sonokai',
+\ 'colorscheme': 'solarized',
 \ }
 
 set completeopt=menu,menuone,noselect
@@ -134,7 +137,7 @@ cmp.setup({
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   -- Use a loop to conveniently call 'setup' on multiple servers and
   -- map buffer local keybindings when the language server attaches
-  local servers = { 'clangd' }
+  local servers = { 'clangd', 'pyright', 'rust_analyzer' }
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
       on_attach = on_attach,
@@ -150,11 +153,12 @@ EOF
 
 " Linters
 let g:ale_linters = {
-\ 'python': ['flake8', 'pylint'],
+\ 'python': ['flake8', 'pylint', 'pylama'],
 \ 'cpp': ['cc', 'ccls', 'clangcheck', 'clangtidy', 'clangd', 'clazy', 'cppcheck', 'cquery', 'flawfinder'],
 \ 'cuda': ['clangd', 'nvcc'],
 \ 'c': ['cc', 'ccls', 'clangd', 'clangtidy', 'cppcheck', 'cquery', 'flawfinder'],
-\ 'cmake': ['cmakelint']
+\ 'cmake': ['cmakelint'],
+\ 'rust': [ 'analyzer', 'cargo', 'rustc'],
 \}
 
 " Fixers
@@ -196,26 +200,15 @@ let g:ale_cuda_clangformat_style_option= '{
 " C settings
 let g:ale_c_clangformat_use_local_file=1
 let g:ale_c_parse_compile_commands=1
-let g:ale_c_clangd_executable='/usr/bin/clangd-10'
 let g:ale_c_clangtidy_checks=[]
-let g:ale_c_clangtidy_executable='/usr/bin/clang-tidy-10'
-let g:ale_c_cppcheck_executable='/usr/bin/cppcheck'
-let g:ale_c_clangformat_executable='/usr/bin/clang-format-10'
 
 " C++ settings
 let g:ale_cpp_clangformat_use_local_file=1
 let g:ale_cpp_parse_compile_commands=1
-let g:ale_cpp_clangcheck_executable='/usr/bin/clang-check-10'
-let g:ale_cpp_clangd_executable='/usr/bin/clangd-10'
 let g:ale_cpp_clangtidy_checks=[]
-let g:ale_cpp_clangtidy_executable='/usr/bin/clang-tidy-10'
-let g:ale_cpp_cppcheck_executable='/usr/bin/cppcheck'
-let g:ale_cpp_clangformat_executable='/usr/bin/clang-format-10'
 
 " CUDA settings
 let g:ale_cuda_clangformat_use_local_file=1
-let g:ale_cuda_clangd_executable='/usr/bin/clangd-10'
-let g:ale_cuda_clangformat_executable='/usr/bin/clang-format-10'
 
 " Other
 let g:ale_set_balloons=1
@@ -230,8 +223,8 @@ nmap <silent> <C-m> <Plug>(ale_previous_wrap)
 nmap <silent> <C-n> <Plug>(ale_next_wrap)
 
 " Colour scheme
-let g:sonokai_transparent_background=1
-colorscheme sonokai
+let g:solarized_termtrans=1
+colorscheme solarized8 
 
 " Hotkeys
 map <C-o> :NERDTreeToggle<CR>
