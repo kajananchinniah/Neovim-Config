@@ -35,8 +35,8 @@ LSPs that you want.
   file)
 - LSP support via nvim-lspconfig (requires neovim 0.5v+)
 - Treesitter support for better highlighting
-- Vimagit to use git better with neovim
-- Sonokai colourscheme
+- Vimagit to use git better
+- Solarized colourscheme
 - Autocomplete via nvim-cmp
 - A few other nice settings (e.g. mapping tap to 4 spaces, line numbers, etc)
 
