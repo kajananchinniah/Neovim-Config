@@ -5,18 +5,6 @@ This repo serves to backup my neovim config file.
 ## Installation
 Get Vim Plug (https://github.com/junegunn/vim-plug)
 
-Vim:
-```
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-```
-
-Afterwards, simply copy and paste the init.vim file into your .vimrc file and install inside vim using:
-```
-:PlugInstall
-```
-Afterwards, the plugins will install. Afterwards, quit and vim should be configured. Note: I'm unsure about the compatability with Vim (as I've stopped using Vim; a few plugins are Neovim specific).
-
 Neovim:
 Get Vim Plug (https://github.com/junegunn/vim-plug)
 ```
@@ -31,9 +19,12 @@ Then just install the plugins inside neovim using:
 ```
 Afterwards, the plugins will install. Afterwards, quit and neovim should be configured.
 
+Vim support is likely indentical but I haven't tested it on Vim (I have a few
+neovim specific plugins for lsp, treesitter and autocompletion support)
+
 To use the fixers and linters, you should install the relevant linters + fixers
-(see the config file for the relevant ones). Currently, they are hardcoded for
-the 10 version of all the tooling.
+(see the config file for the relevant ones). You also will need to install any
+LSPs that you want.
 
 ## Key Features
 - fzf to search for files fast
@@ -50,3 +41,7 @@ the 10 version of all the tooling.
 - A few other nice settings (e.g. mapping tap to 4 spaces, line numbers, etc)
 
 For specifics about the bindings, see `init.vim` for details.
+
+## TODO
+- Refactor to lua to clean things up (I temporarily made the repo private to do
+  this but I procrastinated)
