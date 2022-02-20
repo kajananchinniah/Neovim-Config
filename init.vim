@@ -137,7 +137,7 @@ cmp.setup({
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   -- Use a loop to conveniently call 'setup' on multiple servers and
   -- map buffer local keybindings when the language server attaches
-  local servers = { 'clangd', 'pyright', 'rust_analyzer' }
+  local servers = { 'clangd', 'pyright', 'rust_analyzer', 'hls' }
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
       on_attach = on_attach,
@@ -224,7 +224,7 @@ nmap <silent> <C-n> <Plug>(ale_next_wrap)
 
 " Colour scheme
 let g:solarized_termtrans=1
-colorscheme solarized8 
+colorscheme solarized8
 
 " Hotkeys
 map <C-o> :NERDTreeToggle<CR>
