@@ -10,13 +10,15 @@ First install Neovim. For Ubuntu, run the following:
 sudo add-apt-repository ppa:neovim-ppa/stable
 sudo apt-get install -y neovim
 ```
+For other distributions, please refer to https://github.com/neovim/neovim/wiki/Installing-Neovim.
 
-Next, get Vim Plug (https://github.com/junegunn/vim-plug) by running the following:
+Next, get Vim Plug (https://github.com/junegunn/vim-plug) and make a `nvim` directory by running the following:
 ```
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+mkdir -p ~/.config/nvim
 ```
-Afterwards, make a `nvim` directory under `~/.config/` and copy and paste the `init.vim` file from this repository into `~/.config/nvim/init.vim`.
+Afterwards, copy and paste the `init.vim` file from this repository into `~/.config/nvim/init.vim`.
 
 Now install the plugins inside Neovim by opening `init.vim` with `nvim` and using
 ```
@@ -29,7 +31,10 @@ Neovim specific plugins for LSP, treesitter and autocompletion support)
 
 To use the fixers and linters, you should install the relevant linters and fixers
 (see the config file for the relevant ones). You also will need to install any
-LSPs that you want. For Python, use pip3 to install the following: pyright,
+LSPs that you want.
+
+### Python
+For Python fixers and linters, use pip3 to install the following: pyright,
 flake8, pylint, pylama, autoflake, autoimport, black, and isort.
 
 ## Key Features
