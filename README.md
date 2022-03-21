@@ -16,6 +16,10 @@ Next, get Vim Plug (https://github.com/junegunn/vim-plug) and make a `nvim` dire
 ```
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+```
+
+Now make a directory at your home directory called `.config/nvim`
+```
 mkdir -p ~/.config/nvim
 ```
 Afterwards, copy and paste the `init.vim` file from this repository into `~/.config/nvim/init.vim`.
@@ -29,13 +33,19 @@ Afterwards, quit and Neovim should be configured.
 Vim support is likely indentical but I haven't tested it on Vim (I have a few
 Neovim specific plugins for LSP, treesitter and autocompletion support)
 
+## Fixers and Linters
 To use the fixers and linters, you should install the relevant linters and fixers
 (see the config file for the relevant ones). You also will need to install any
-LSPs that you want.
+LSPs that you want. If you wish to turn them off, you may edit the `init.vim` file
+to remove anything you want. Refer to the documentation for ALE or Neovim-LSP to
+see details.
 
 ### Python
 For Python fixers and linters, use pip3 to install the following: pyright,
 flake8, pylint, pylama, autoflake, autoimport, black, and isort.
+```
+pip3 install pyright flake8 pylint pylama autoflake autoimport black isort
+```
 
 ## Key Features
 - fzf to search for files fast
