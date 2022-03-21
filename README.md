@@ -1,7 +1,6 @@
 # Neovim-Config
 
-This repo serves to backup my neovim config file. I ended up making this public
-again for convenience.
+This repo serves to backup my neovim config file.
 
 ## Installation
 
@@ -62,7 +61,3 @@ pip3 install pyright flake8 pylint pylama autoflake autoimport black isort
 - A few other nice settings (e.g. mapping tap to 4 spaces, line numbers, etc)
 
 For specifics about the bindings, see `init.vim`.
-
-## TODO
-- Refactor to lua to clean things up (I temporarily made the repo private to do
-  this but I procrastinated)
