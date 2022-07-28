@@ -19,6 +19,8 @@ call plug#begin()
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-vsnip'
+  Plug 'hrsh7th/vim-vsnip'
 call plug#end()
 
 " Enable lightline
@@ -67,8 +69,8 @@ local on_attach = function(client, bufnr)
 end
 
 require'nvim-treesitter.configs'.setup {
-  -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = "maintained",
+  -- A list of parser names
+  ensure_installed = {'python', 'cpp', 'c', 'cuda', 'cmake', 'yaml', 'bash'},
 
   -- Install languages synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -93,19 +95,27 @@ require'nvim-treesitter.configs'.setup {
 
 -- Setup nvim-cmp.
 local cmp = require'cmp'
-
-cmp.setup({
-    mapping = {
-      ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-      ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-      ['<C-e>'] = cmp.mapping({
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
-      }),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      end,
     },
+    window = {
+      -- completion = cmp.config.window.bordered(),
+      -- documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       { name = 'vsnip' }, -- For vsnip users.
@@ -117,8 +127,18 @@ cmp.setup({
     })
   })
 
+  -- Set configuration for specific filetype.
+  cmp.setup.filetype('gitcommit', {
+    sources = cmp.config.sources({
+      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = {
       { name = 'buffer' }
     }
@@ -126,6 +146,7 @@ cmp.setup({
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
       { name = 'path' }
     }, {
@@ -140,10 +161,8 @@ cmp.setup({
   local servers = { 'clangd', 'pyright', 'rust_analyzer', 'hls' }
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
-      on_attach = on_attach,
-      flags = {
-        debounce_text_changes = 150,
-      }
+      capabilities = capabilities,
+      on_attach = on_attach
     }
 
 end
@@ -170,6 +189,7 @@ let g:ale_fixers = {
 \ 'c': ['clang-format'],
 \ 'cmake': ['cmakeformat'],
 \ 'rust': ['rustfmt'],
+\ 'bzl': ['buildifier'],
 \}
 
 " Style guide
@@ -216,7 +236,7 @@ let g:ale_linters_explicit=1
 let g:airline#extensions#ale#enabled=1
 
 let g:ale_lint_on_enter=0
-let g:ale_fix_on_save=1
+" let g:ale_fix_on_save=1
 
 " Quick search for ALE errors
 nmap <silent> <C-m> <Plug>(ale_previous_wrap)
