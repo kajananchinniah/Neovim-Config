@@ -173,7 +173,7 @@ EOF
 " Linters
 let g:ale_linters = {
 \ 'python': ['flake8', 'pylint', 'pylama'],
-\ 'cpp': ['cc', 'ccls', 'clangcheck', 'clangtidy', 'clangd', , 'cppcheck', 'flawfinder'],
+\ 'cpp': ['cc', 'ccls', 'clangcheck', 'clangtidy', 'clangd', 'cppcheck', 'flawfinder'],
 \ 'cuda': ['clangd', 'nvcc'],
 \ 'c': ['cc', 'ccls', 'clangd', 'clangtidy', 'cppcheck', 'flawfinder'],
 \ 'cmake': ['cmakelint'],
