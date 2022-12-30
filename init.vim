@@ -9,8 +9,8 @@ call plug#begin()
   Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
   Plug 'Yagua/nebulous.nvim'
   Plug 'sainnhe/sonokai'
-  Plug 'lifepillar/vim-solarized8'
   Plug 'morhetz/gruvbox'
+  Plug 'ishan9299/nvim-solarized-lua'
   Plug 'jreybert/vimagit'
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -26,7 +26,7 @@ call plug#end()
 " Enable lightline
 set laststatus=2
 let g:lightline = {
-\ 'colorscheme': 'solarized',
+\ 'colorscheme': 'terafox',
 \ }
 
 set completeopt=menu,menuone,noselect
@@ -70,10 +70,12 @@ end
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names
-  ensure_installed = {'python', 'cpp', 'c', 'cuda', 'cmake', 'yaml', 'bash'},
+  ensure_installed = {'python', 'lua', 'cpp', 'c', 'cuda', 'cmake', 'yaml', 'bash'},
 
   -- Install languages synchronously (only applied to `ensure_installed`)
   sync_install = false,
+
+  auto_install = true,
 
   -- List of parsers to ignore installing
   ignore_install = { },
@@ -155,7 +157,7 @@ local cmp = require'cmp'
   })
 
   -- Setup lspconfig.
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
   -- Use a loop to conveniently call 'setup' on multiple servers and
   -- map buffer local keybindings when the language server attaches
   local servers = { 'clangd', 'pyright', 'rust_analyzer', 'hls' }
@@ -164,8 +166,19 @@ local cmp = require'cmp'
       capabilities = capabilities,
       on_attach = on_attach
     }
-
 end
+
+require('nightfox').setup({
+  options = {
+    transparent = true,
+    styles = {
+      comments = "italic",
+      keywords = "bold",
+      types = "italic,bold",
+    }
+  }
+})
+
 EOF
 
 "ALE
@@ -243,8 +256,9 @@ nmap <silent> <C-m> <Plug>(ale_previous_wrap)
 nmap <silent> <C-n> <Plug>(ale_next_wrap)
 
 " Colour scheme
-let g:solarized_termtrans=1
-colorscheme solarized8
+let g:solarized_termtrans = 1
+autocmd VimEnter * hi Normal ctermbg=none
+colorscheme terafox
 
 " Hotkeys
 map <C-o> :NERDTreeToggle<CR>
