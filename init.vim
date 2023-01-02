@@ -11,9 +11,18 @@ call plug#begin()
   Plug 'sainnhe/sonokai'
   Plug 'morhetz/gruvbox'
   Plug 'ishan9299/nvim-solarized-lua'
-  Plug 'jreybert/vimagit'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
+  Plug 'lewis6991/gitsigns.nvim'
+  Plug 'lukas-reineke/indent-blankline.nvim'
+  Plug 'numToStr/Comment.nvim'
+  Plug 'tpope/vim-sleuth'
   Plug 'neovim/nvim-lspconfig'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-path'
@@ -160,7 +169,7 @@ local cmp = require'cmp'
   local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
   -- Use a loop to conveniently call 'setup' on multiple servers and
   -- map buffer local keybindings when the language server attaches
-  local servers = { 'clangd', 'pyright', 'rust_analyzer', 'hls' }
+  local servers = { 'clangd', 'pyright', 'hls' }
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
       capabilities = capabilities,
@@ -258,7 +267,7 @@ nmap <silent> <C-n> <Plug>(ale_next_wrap)
 " Colour scheme
 let g:solarized_termtrans = 1
 autocmd VimEnter * hi Normal ctermbg=none
-colorscheme terafox
+colorscheme terafox 
 
 " Hotkeys
 map <C-o> :NERDTreeToggle<CR>
@@ -300,5 +309,14 @@ set number
 " Highlight matching braces
 set showmatch
 
+" Highlight on search
+set hlsearch
+
+" Break indent
+set breakindent
+
+" Undo history
+set undofile
+
 " Allow use of mouse
-set mouse=r
+set mouse=a
