@@ -353,6 +353,8 @@ nmap <silent> <C-n> <Plug>(ale_next_wrap)
 " Colour scheme
 set termguicolors
 autocmd VimEnter * hi Normal ctermbg=none
+au ColorScheme * hi Normal ctermbg=none guibg=none
+au ColorScheme myspecialcolors hi Normal ctermbg=red guibg=red
 colorscheme terafox
 
 " Hotkeys
